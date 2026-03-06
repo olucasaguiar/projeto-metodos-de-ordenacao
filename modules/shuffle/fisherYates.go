@@ -1,4 +1,4 @@
-package modules
+package shuffle
 
 import "math/rand"
 
@@ -24,7 +24,7 @@ import "math/rand"
 //	array := []int{1, 2, 3, 4}
 //	FisherYates(&array) // embaralha o array aleatoriamente
 //	// Exemplo de saída possível: [3, 1, 4, 2]
-func FisherYates(array *[]int) bool {
+func FisherYatesStrategy(array *[]int) bool {
 	if len(*array) < 2 {
 		return true
 	}

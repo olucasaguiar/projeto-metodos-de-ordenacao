@@ -1,6 +1,8 @@
-package modules
+package utils
 
-func VetorOrdenadoCrescente(tamanho int) []int {
+import "github.com/olucasaguiar/projeto-metodos-de-ordenacao/modules/shuffle"
+
+func BuildAscendingSortedArray(tamanho int) []int {
 	vetor := make([]int, tamanho)
 	for i := range tamanho {
 		vetor[i] = i + 1
@@ -8,7 +10,7 @@ func VetorOrdenadoCrescente(tamanho int) []int {
 	return vetor
 }
 
-func VetorOrdenadoDecrescente(tamanho int) []int {
+func BuildDescendingSortedArray(tamanho int) []int {
 	vetor := make([]int, tamanho)
 	for i := range tamanho {
 		vetor[i] = tamanho - i
@@ -16,12 +18,12 @@ func VetorOrdenadoDecrescente(tamanho int) []int {
 	return vetor
 }
 
-func VetorAleatorio(tamanho int) []int {
+func BuildRandomArray(tamanho int) []int {
 	vetor := make([]int, tamanho)
 	for i := range tamanho {
 		vetor[i] = i + 1
 	}
-	success := FisherYates(&vetor)
+	success := shuffle.FisherYatesStrategy(&vetor)
 	if !success {
 		return nil
 	}
