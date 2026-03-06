@@ -17,3 +17,11 @@ Faça um programa (em qualquer linguagem de programação) para:
   - gráficos com as comparações de tempos medidos entre todos os métodos.
   - análise crítica sobre a eficiência dos algoritmos.
   - análise crítica sobre a análise assintótica X os tempos obtidos.
+
+## TODOs
+
+- [ ] Adicionar script para analise de resultados
+- [ ] Adicionar Dockerfile para rodar os testes em container
+- [ ] Adicionar scripts para automatizar a geração dos resultados
+- [ ] Executar os testes e analisar os resultados
+- [ ] Escrever relatório
