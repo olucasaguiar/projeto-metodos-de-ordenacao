@@ -10,23 +10,18 @@ import (
 )
 
 const (
-	REPORT_DIRNAME       = "results"
-	REPORT_FILENAME      = "benchmarks.csv"
-	EXECUTION_COUNT      = 5
-	BUBBLE_SORT          = "bubble"
-	BUBBLE_SORT_TITLE    = "Bubble Sort"
-	SELECTION_SORT       = "selection"
-	SELECTION_SORT_TITLE = "Selection Sort"
-	INSERTION_SORT       = "insertion"
-	INSERTION_SORT_TITLE = "Insertion Sort"
-	MERGE_SORT           = "merge"
-	MERGE_SORT_TITLE     = "Merge Sort"
-	QUICK_SORT           = "quick"
-	QUICK_SORT_TITLE     = "Quick Sort"
-	ALL_SORT_ALGORITHMS  = BUBBLE_SORT + "," + SELECTION_SORT + "," + INSERTION_SORT + "," + MERGE_SORT + "," + QUICK_SORT
-	SORTED_ASCENDING     = "sorted_ascending"
-	SORTED_DESCENDING    = "sorted_descending"
-	RANDOM_SHUFFLED      = "random_shuffled"
+	REPORT_DIRNAME      = "results"
+	REPORT_FILENAME     = "benchmarks.csv"
+	EXECUTION_COUNT     = 5
+	BUBBLE_SORT         = "bubble"
+	SELECTION_SORT      = "selection"
+	INSERTION_SORT      = "insertion"
+	MERGE_SORT          = "merge"
+	QUICK_SORT          = "quick"
+	ALL_SORT_ALGORITHMS = BUBBLE_SORT + "," + SELECTION_SORT + "," + INSERTION_SORT + "," + MERGE_SORT + "," + QUICK_SORT
+	SORTED_ASCENDING    = "sorted_ascending"
+	SORTED_DESCENDING   = "sorted_descending"
+	RANDOM_SHUFFLED     = "random_shuffled"
 )
 
 type TestScenario struct {
@@ -152,11 +147,11 @@ func exportResults(results []TestResult) error {
 func main() {
 	helpMessage := "Usage: go run app.go [test_case]\n" +
 		"Where [test_case] can be one of the following:\n" +
-		"  - " + BUBBLE_SORT + ": Run benchmarks for " + BUBBLE_SORT_TITLE + "\n" +
-		"  - " + SELECTION_SORT + ": Run benchmarks for " + SELECTION_SORT_TITLE + "\n" +
-		"  - " + INSERTION_SORT + ": Run benchmarks for " + INSERTION_SORT_TITLE + "\n" +
-		"  - " + MERGE_SORT + ": Run benchmarks for " + MERGE_SORT_TITLE + "\n" +
-		"  - " + QUICK_SORT + ": Run benchmarks for " + QUICK_SORT_TITLE + "\n" +
+		"  - " + BUBBLE_SORT + ": Run benchmarks for Bubble Sort\n" +
+		"  - " + SELECTION_SORT + ": Run benchmarks for Selection Sort\n" +
+		"  - " + INSERTION_SORT + ": Run benchmarks for Inserction Sort\n" +
+		"  - " + MERGE_SORT + ": Run benchmarks for Merge Sort\n" +
+		"  - " + QUICK_SORT + ": Run benchmarks for Quick Sort\n" +
 		"Example: go run app.go " + BUBBLE_SORT
 
 	if len(os.Args) < 2 {
@@ -176,15 +171,15 @@ func main() {
 	var results []TestResult
 	switch testCase {
 	case BUBBLE_SORT:
-		results = runAllScenarios(BUBBLE_SORT_TITLE, sort.BubbleSort)
+		results = runAllScenarios(BUBBLE_SORT, sort.BubbleSort)
 	case SELECTION_SORT:
-		results = runAllScenarios(SELECTION_SORT_TITLE, sort.SelectionSort)
+		results = runAllScenarios(SELECTION_SORT, sort.SelectionSort)
 	case INSERTION_SORT:
-		results = runAllScenarios(INSERTION_SORT_TITLE, sort.InsertionSort)
+		results = runAllScenarios(INSERTION_SORT, sort.InsertionSort)
 	case MERGE_SORT:
-		results = runAllScenarios(MERGE_SORT_TITLE, sort.MergeSort)
+		results = runAllScenarios(MERGE_SORT, sort.MergeSort)
 	case QUICK_SORT:
-		results = runAllScenarios(QUICK_SORT_TITLE, sort.QuickSort)
+		results = runAllScenarios(QUICK_SORT, sort.QuickSort)
 	default:
 		fmt.Println("Invalid test case. Please use one of the following: " + ALL_SORT_ALGORITHMS + ".")
 		os.Exit(1)
