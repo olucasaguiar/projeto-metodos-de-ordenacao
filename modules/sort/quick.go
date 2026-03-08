@@ -1,6 +1,8 @@
 package sort
 
-func QuickSort(array []int, size int) []int {
+import "cmp"
+
+func QuickSort[T cmp.Ordered](array []T, size int) []T {
 	if size <= 1 {
 		return array
 	}
@@ -8,7 +10,7 @@ func QuickSort(array []int, size int) []int {
 	return array
 }
 
-func quickSortHelper(array *[]int, low, high int) {
+func quickSortHelper[T cmp.Ordered](array *[]T, low, high int) {
 	if low < high {
 		pi := partition(array, low, high)
 		quickSortHelper(array, low, pi-1)
@@ -16,7 +18,7 @@ func quickSortHelper(array *[]int, low, high int) {
 	}
 }
 
-func partition(array *[]int, low, high int) int {
+func partition[T cmp.Ordered](array *[]T, low, high int) int {
 	pivot := (*array)[high]
 	i := low - 1
 

@@ -1,6 +1,8 @@
 package sort
 
-func InsertionSort(array []int, size int) []int {
+import "cmp"
+
+func InsertionSort[T cmp.Ordered](array []T, size int) []T {
 	for i := 1; i < size; i++ {
 		key := array[i]
 		j := i - 1

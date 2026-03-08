@@ -1,6 +1,8 @@
 package sort
 
-func SelectionSort(array []int, size int) []int {
+import "cmp"
+
+func SelectionSort[T cmp.Ordered](array []T, size int) []T {
 	for i := 0; i < size-1; i++ {
 		minIdx := i
 		for j := i + 1; j < size; j++ {

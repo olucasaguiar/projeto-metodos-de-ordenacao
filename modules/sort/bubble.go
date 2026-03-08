@@ -1,6 +1,10 @@
 package sort
 
-func BubbleSort(array []int, size int) []int {
+import (
+	"cmp"
+)
+
+func BubbleSort[T cmp.Ordered](array []T, size int) []T {
 	for i := 0; i < size-1; i++ {
 		swapped := false
 		for j := 0; j < size-i-1; j++ {

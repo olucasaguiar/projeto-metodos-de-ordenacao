@@ -1,6 +1,8 @@
 package sort
 
-func MergeSort(array []int, size int) []int {
+import "cmp"
+
+func MergeSort[T cmp.Ordered](array []T, size int) []T {
 	if size <= 1 {
 		return array
 	}
@@ -8,7 +10,7 @@ func MergeSort(array []int, size int) []int {
 	return array
 }
 
-func mergeSortHelper(array *[]int, left, right int) {
+func mergeSortHelper[T cmp.Ordered](array *[]T, left, right int) {
 	if left < right {
 		mid := left + (right-left)/2
 		mergeSortHelper(array, left, mid)
@@ -17,12 +19,12 @@ func mergeSortHelper(array *[]int, left, right int) {
 	}
 }
 
-func merge(array *[]int, left, mid, right int) {
+func merge[T cmp.Ordered](array *[]T, left, mid, right int) {
 	leftSize := mid - left + 1
 	rightSize := right - mid
 
-	leftArr := make([]int, leftSize)
-	rightArr := make([]int, rightSize)
+	leftArr := make([]T, leftSize)
+	rightArr := make([]T, rightSize)
 
 	for i := range leftSize {
 		leftArr[i] = (*array)[left+i]

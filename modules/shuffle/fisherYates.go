@@ -1,6 +1,9 @@
 package shuffle
 
-import "math/rand"
+import (
+	"cmp"
+	"math/rand"
+)
 
 // FisherYates implementa o algoritmo de embaralhamento Fisher-Yates (também conhecido como Knuth Shuffle).
 // Este algoritmo embaralha aleatoriamente os elementos de um slice de inteiros,
@@ -11,7 +14,8 @@ import "math/rand"
 // Esta abordagem garante uma distribuição uniforme de todas as permutações possíveis.
 //
 // Parâmetros:
-//   - array: um ponteiro para um slice de inteiros que será embaralhado in-place.
+//   - T: tipo genérico que implementa a interface cmp.Ordered, permitindo que o algoritmo funcione com qualquer tipo ordenável.
+//   - array: um ponteiro para um slice de tipo T que será embaralhado in-place.
 //
 // Retorno:
 //   - bool: retorna true se o embaralhamento foi bem-sucedido, ou se o array possui menos de 2 elementos.
@@ -24,7 +28,7 @@ import "math/rand"
 //	array := []int{1, 2, 3, 4}
 //	FisherYates(&array) // embaralha o array aleatoriamente
 //	// Exemplo de saída possível: [3, 1, 4, 2]
-func FisherYatesStrategy(array *[]int) bool {
+func FisherYatesStrategy[T cmp.Ordered](array *[]T) bool {
 	if len(*array) < 2 {
 		return true
 	}

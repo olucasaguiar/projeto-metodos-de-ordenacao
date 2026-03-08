@@ -10,18 +10,28 @@ type Report struct {
 	filename string
 }
 
-func NewReport(basedir string, filename string, force bool) (*Report, error) {
+func NewReport(basedir string, filename string, header []string, force bool) (*Report, error) {
 	err := CreateDirectory(basedir, true)
 	if err != nil {
 		return nil, err
 	}
 
 	reportPath := fmt.Sprintf("%s%c%s", basedir, os.PathSeparator, filename)
-	err = CreateFile(reportPath, force)
-	if err != nil {
-		return nil, err
+	if FileExists(reportPath) && !force {
+		return &Report{filename: reportPath}, nil
 	}
-	return &Report{filename: reportPath}, nil
+
+	if !FileExists(reportPath) || force {
+		err = CreateFile(reportPath, force)
+		if err != nil {
+			return nil, err
+		}
+	}
+
+	report := &Report{filename: reportPath}
+	report.WriteHeader(header...)
+	return report, nil
+
 }
 
 func (r *Report) WriteHeader(headers ...string) error {

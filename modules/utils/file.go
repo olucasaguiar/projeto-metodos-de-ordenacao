@@ -13,15 +13,14 @@ func DeleteFile(filename string) error {
 
 func CreateFile(filename string, force bool) error {
 	if force {
-		os.Remove(filename)
+		DeleteFile(filename)
 	}
 
-	if !FileExists(filename) {
-		_, err := os.Create(filename)
-		if err != nil {
-			return err
-		}
+	_, err := os.Create(filename)
+	if err != nil {
+		return err
 	}
+
 	return nil
 }
 
