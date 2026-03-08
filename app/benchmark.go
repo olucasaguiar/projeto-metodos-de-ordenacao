@@ -5,8 +5,8 @@ import (
 	"os"
 	"time"
 
-	"github.com/olucasaguiar/projeto-metodos-de-ordenacao/modules/sort"
-	"github.com/olucasaguiar/projeto-metodos-de-ordenacao/modules/utils"
+	"github.com/olucasaguiar/projeto-metodos-de-ordenacao/app/sort"
+	"github.com/olucasaguiar/projeto-metodos-de-ordenacao/app/utils"
 )
 
 const (

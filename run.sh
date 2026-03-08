@@ -47,10 +47,13 @@ The results will be stored in the 'results' directory as CSV files, which can be
   - Average Time (ns): The average execution time in nanoseconds for the given array size across all iterations.
   - Median Time (ns): The median execution time in nanoseconds for the given array size across all iterations.
 EOF
+
 echo "Running benchmarks..."
-go run "modules/benchmark.go" bubble
-go run "modules/benchmark.go" selection
-go run "modules/benchmark.go" insertion
-go run "modules/benchmark.go" merge
-go run "modules/benchmark.go" quick
+BENCHMARK_SCRIPT="app/benchmark.go"
+BENCHMARKS=("bubble" "selection" "insertion" "merge" "quick")
+
+for algorithm in "${BENCHMARKS[@]}"; do
+    go run "$BENCHMARK_SCRIPT" "$algorithm"
+done
+
 echo "Benchmarks completed. Results are stored in the 'results' directory."

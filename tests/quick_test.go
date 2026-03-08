@@ -3,7 +3,7 @@ package sort
 import (
 	"testing"
 
-	"github.com/olucasaguiar/projeto-metodos-de-ordenacao/modules/sort"
+	"github.com/olucasaguiar/projeto-metodos-de-ordenacao/app/sort"
 )
 
 func TestQuickSort(t *testing.T) {

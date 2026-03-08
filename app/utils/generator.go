@@ -1,6 +1,6 @@
 package utils
 
-import "github.com/olucasaguiar/projeto-metodos-de-ordenacao/modules/shuffle"
+import "github.com/olucasaguiar/projeto-metodos-de-ordenacao/app/shuffle"
 
 func BuildAscendingSortedArray(tamanho int) []int {
 	vetor := make([]int, tamanho)
