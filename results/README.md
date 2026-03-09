@@ -12,14 +12,14 @@ Os resultados desta execução podem ser encontrados no arquivo [benchmark.csv](
 
 ## Especificações de Hardware
 
-- CPU: `AMD EPYC 7763 64-Core Processor`
-- Cores: `2`
-- RAM: `7.8Gi`
-- OS: `Linux codespaces-363dba 6.8.0-1044-azure #50~22.04.1-Ubuntu SMP Wed Dec  3 15:13:22 UTC 2025 x86_64 GNU/Linux`
+- CPU: `AMD Ryzen 5 3600X 6-Core Processor`
+- Cores: `12`
+- RAM: `7.7Gi`
+- OS: `Linux DESKTOP-O2QNOLB 6.6.87.2-microsoft-standard-WSL2 #1 SMP PREEMPT_DYNAMIC Thu Jun  5 18:30:46 UTC 2025 x86_64 x86_64 x86_64 GNU/Linux`
 
 ## Especificações de Software
 
-- Versão Go: `go1.25.6`
+- Versão Go: `go1.26.1`
 - Implementações de Algoritmos de Ordenação:
   - Bubble Sort: [bubble.go](../app/sort/bubble.go)
   - Selection Sort: [selection.go](../app/sort/selection.go)
