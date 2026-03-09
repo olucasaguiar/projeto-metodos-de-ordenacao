@@ -1,7 +1,26 @@
 package sort
 
-import "cmp"
+import (
+	"cmp"
+)
 
+// QuickSort implementa o algoritmo de ordenação Quick Sort.
+//
+// O Quick Sort é um algoritmo de divisão e conquista que seleciona um elemento
+// como pivô e particiona o array em torno dele, colocando elementos menores à
+// esquerda e maiores à direita. O processo é repetido recursivamente em cada
+// partição. É considerado um dos algoritmos mais eficientes na prática.
+//
+// Complexidade de Tempo:
+//   - Melhor caso: O(n log n) - quando o pivô divide o array equilibradamente
+//   - Caso médio: O(n log n)
+//   - Pior caso: O(n²) - quando o pivô é sempre o menor ou maior elemento
+//
+// Parâmetros:
+//   - array: slice de elementos do tipo T (genérico, deve ser ordenável)
+//   - size: tamanho do array a ser ordenado
+//
+// Retorna: o slice ordenado em ordem crescente.
 func QuickSort[T cmp.Ordered](array []T, size int) []T {
 	if size <= 1 {
 		return array

@@ -44,12 +44,7 @@ func (r *Report) WriteHeader(headers ...string) error {
 	writer := csv.NewWriter(file)
 	defer writer.Flush()
 
-	quotedHeaders := make([]string, len(headers))
-	for i, header := range headers {
-		quotedHeaders[i] = fmt.Sprintf("\"%s\"", header)
-	}
-
-	return writer.Write(quotedHeaders)
+	return writer.Write(headers)
 }
 
 func (r *Report) WriteLines(lines ...[]string) error {

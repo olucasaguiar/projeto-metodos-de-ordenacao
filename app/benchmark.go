@@ -113,10 +113,10 @@ func runAllScenarios(algorithmName string, sortAlgorithm func([]int, int) []int)
 	results := make([]TestResult, 0)
 	for _, scenario := range scenarios {
 		for _, size := range scenario.sizes {
-			fmt.Printf("Running %s for %s of size %d...", algorithmName, scenario.name, size)
+			fmt.Printf("Executando %s para %s de tamanho %d...", algorithmName, scenario.name, size)
 			result := runSingleScenario(algorithmName, scenario.name, sortAlgorithm, scenario.arrayFactory(size), size)
 			results = append(results, result)
-			fmt.Printf(" Done in %s\n", result.average)
+			fmt.Printf(" Concluído em %s\n", result.average)
 		}
 	}
 	return results
@@ -145,28 +145,28 @@ func exportResults(results []TestResult) error {
 }
 
 func main() {
-	helpMessage := "Usage: go run app.go [test_case]\n" +
-		"Where [test_case] can be one of the following:\n" +
-		"  - " + BUBBLE_SORT + ": Run benchmarks for Bubble Sort\n" +
-		"  - " + SELECTION_SORT + ": Run benchmarks for Selection Sort\n" +
-		"  - " + INSERTION_SORT + ": Run benchmarks for Inserction Sort\n" +
-		"  - " + MERGE_SORT + ": Run benchmarks for Merge Sort\n" +
-		"  - " + QUICK_SORT + ": Run benchmarks for Quick Sort\n" +
-		"Example: go run app.go " + BUBBLE_SORT
+	helpMessage := "Uso: go run app/benchmark.go [caso_teste]\n" +
+		"Onde [caso_teste] pode ser um dos seguintes:\n" +
+		"  - " + BUBBLE_SORT + ": Executar benchmarks para Bubble Sort\n" +
+		"  - " + SELECTION_SORT + ": Executar benchmarks para Selection Sort\n" +
+		"  - " + INSERTION_SORT + ": Executar benchmarks para Insertion Sort\n" +
+		"  - " + MERGE_SORT + ": Executar benchmarks para Merge Sort\n" +
+		"  - " + QUICK_SORT + ": Executar benchmarks para Quick Sort\n" +
+		"Exemplo: go run app/benchmark.go " + BUBBLE_SORT
 
 	if len(os.Args) < 2 {
 		fmt.Println(helpMessage)
 		os.Exit(0)
 	}
 	if len(os.Args) > 2 {
-		fmt.Println("Too many arguments. Please provide only one test case: " + ALL_SORT_ALGORITHMS + ".")
+		fmt.Println("Entrada inválida. Por favor, forneça apenas um caso de teste: " + ALL_SORT_ALGORITHMS + ".")
 		fmt.Println(helpMessage)
 		os.Exit(1)
 	}
 
 	testCase := os.Args[1]
 
-	fmt.Println("Starting benchmarks...")
+	fmt.Println("Iniciando benchmarks...")
 
 	var results []TestResult
 	switch testCase {
@@ -181,15 +181,15 @@ func main() {
 	case QUICK_SORT:
 		results = runAllScenarios(QUICK_SORT, sort.QuickSort)
 	default:
-		fmt.Println("Invalid test case. Please use one of the following: " + ALL_SORT_ALGORITHMS + ".")
+		fmt.Println("Caso de teste inválido. Por favor, use um dos seguintes: " + ALL_SORT_ALGORITHMS + ".")
 		os.Exit(1)
 	}
 
-	fmt.Println("Exporting results to benchmarks.csv...")
+	fmt.Println("Exportando resultados para benchmarks.csv...")
 	err := exportResults(results)
 	if err != nil {
-		fmt.Println("Error exporting results:", err)
+		fmt.Println("Erro ao exportar resultados:", err)
 		os.Exit(1)
 	}
-	fmt.Println("Benchmarking completed successfully.")
+	fmt.Println("Benchmarking concluído com sucesso.")
 }

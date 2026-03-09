@@ -1,7 +1,25 @@
 package sort
 
-import "cmp"
+import (
+	"cmp"
+)
 
+// MergeSort implementa o algoritmo de ordenação Merge Sort.
+//
+// O Merge Sort é um algoritmo de divisão e conquista que divide o array em duas
+// metades, ordena recursivamente cada metade e depois mescla as duas metades
+// ordenadas. É um algoritmo estável e eficiente para listas grandes.
+//
+// Complexidade de Tempo:
+//   - Melhor caso: O(n log n)
+//   - Caso médio: O(n log n)
+//   - Pior caso: O(n log n)
+//
+// Parâmetros:
+//   - array: slice de elementos do tipo T (genérico, deve ser ordenável)
+//   - size: tamanho do array a ser ordenado
+//
+// Retorna: o slice ordenado em ordem crescente.
 func MergeSort[T cmp.Ordered](array []T, size int) []T {
 	if size <= 1 {
 		return array
