@@ -31,13 +31,11 @@ type TestScenario struct {
 }
 
 type TestResult struct {
-	name    string
-	sample  string
-	size    int
-	best    time.Duration
-	worst   time.Duration
-	average time.Duration
-	median  time.Duration
+	name      string
+	sample    string
+	size      int
+	iteration int
+	duration  time.Duration
 }
 
 func benchmark(fn func([]int, int) []int, array []int, size int) time.Duration {
@@ -47,60 +45,24 @@ func benchmark(fn func([]int, int) []int, array []int, size int) time.Duration {
 	return duration
 }
 
-func calculateStatistics(durations []time.Duration) (best time.Duration, worst time.Duration, average time.Duration, median time.Duration) {
-	if len(durations) == 0 {
-		return 0, 0, 0, 0
-	}
+func runSingleScenario(name string, description string, sortAlgorithm func([]int, int) []int, array []int, size int) []TestResult {
+	var results []TestResult
 
-	best = durations[0]
-	worst = durations[0]
-	var total time.Duration
-
-	for _, duration := range durations {
-		if duration < best {
-			best = duration
-		}
-		if duration > worst {
-			worst = duration
-		}
-		total += duration
-	}
-
-	average = total / time.Duration(len(durations))
-
-	sortedDurations := sort.QuickSort(durations, len(durations))
-
-	if len(sortedDurations)%2 == 0 {
-		mid1 := sortedDurations[len(sortedDurations)/2-1]
-		mid2 := sortedDurations[len(sortedDurations)/2]
-		median = (mid1 + mid2) / 2
-	} else {
-		median = sortedDurations[len(sortedDurations)/2]
-	}
-
-	return best, worst, average, median
-}
-
-func runSingleScenario(name string, description string, sortAlgorithm func([]int, int) []int, array []int, size int) TestResult {
-	var duration []time.Duration
-
-	for range EXECUTION_COUNT {
+	for i := range EXECUTION_COUNT {
 		sampleCopy := make([]int, len(array))
 		copy(sampleCopy, array)
-		duration = append(duration, benchmark(sortAlgorithm, sampleCopy, size))
+		duration := benchmark(sortAlgorithm, sampleCopy, size)
+		result := TestResult{
+			name:      name,
+			sample:    description,
+			size:      size,
+			iteration: i,
+			duration:  duration,
+		}
+		results = append(results, result)
 	}
 
-	best, worst, average, median := calculateStatistics(duration)
-
-	return TestResult{
-		name:    name,
-		sample:  description,
-		size:    size,
-		best:    best,
-		worst:   worst,
-		average: average,
-		median:  median,
-	}
+	return results
 }
 
 func runAllScenarios(algorithmName string, sortAlgorithm func([]int, int) []int) []TestResult {
@@ -115,15 +77,15 @@ func runAllScenarios(algorithmName string, sortAlgorithm func([]int, int) []int)
 		for _, size := range scenario.sizes {
 			fmt.Printf("Executando %s para %s de tamanho %d...", algorithmName, scenario.name, size)
 			result := runSingleScenario(algorithmName, scenario.name, sortAlgorithm, scenario.arrayFactory(size), size)
-			results = append(results, result)
-			fmt.Printf(" Concluído em %s\n", result.average)
+			results = append(results, result...)
+			fmt.Println(" Concluído.")
 		}
 	}
 	return results
 }
 
 func exportResults(results []TestResult) error {
-	header := []string{"Algorithm", "Sample", "Size", "Best (ns)", "Worst (ns)", "Average (ns)", "Median (ns)"}
+	header := []string{"Algorithm", "Sample", "Size", "Iteration", "Duration (ns)"}
 	report, err := utils.NewReport(REPORT_DIRNAME, REPORT_FILENAME, header, false)
 	if err != nil {
 		return err
@@ -135,10 +97,7 @@ func exportResults(results []TestResult) error {
 			result.name,
 			result.sample,
 			fmt.Sprintf("%d", result.size),
-			fmt.Sprintf("%d", result.best.Nanoseconds()),
-			fmt.Sprintf("%d", result.worst.Nanoseconds()),
-			fmt.Sprintf("%d", result.average.Nanoseconds()),
-			fmt.Sprintf("%d", result.median.Nanoseconds()),
+			fmt.Sprintf("%d", result.duration.Nanoseconds()),
 		})
 	}
 	return report.WriteLines(csvLines...)
