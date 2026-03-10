@@ -56,3 +56,9 @@ O artigo está separado nos seguintes documentos:
 2. [Metodologia](./docs/METODOLOGY.md)
 3. [Resultados](./docs/RESULTS.md)
 4. [Conclusão](./docs/CONCLUSION.md)
+
+## Outros documentos
+
+1. [Relatório compilado](./docs/_relatorio.pdf)
+2. [Apresentação em Slides](./docs/_apresentacao.pdf)
+3. [Python Notebook utilizado nas análises](./docs/_analises.ipynb)
