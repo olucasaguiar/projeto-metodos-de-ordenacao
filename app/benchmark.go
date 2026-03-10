@@ -97,6 +97,7 @@ func exportResults(results []TestResult) error {
 			result.name,
 			result.sample,
 			fmt.Sprintf("%d", result.size),
+			fmt.Sprintf("%d", result.iteration),
 			fmt.Sprintf("%d", result.duration.Nanoseconds()),
 		})
 	}
