@@ -7,6 +7,7 @@ A análise experimental dos algoritmos de ordenação foi conduzida em diferente
 O **mapa de calor dos tempos médios** (Figura 1) fornece uma visão integrada dos resultados. Observa-se que algoritmos quadráticos (*Bubble Sort*, *Selection Sort* e *Insertion Sort*) apresentam tempos de execução que crescem rapidamente com o aumento do tamanho da entrada, chegando a valores da ordem de milhares de segundos para 100.000 elementos. Em contraste, *Merge Sort* e *Quick Sort* mantêm tempos significativamente menores, confirmando sua escalabilidade superior.
 
 | Algoritmo | Observação prática |
+| --------- | ------------------ |
 | *Merge Sort* | apresenta tempos estáveis e previsíveis, mas exige memória auxiliar adicional, o que pode ser relevante em aplicações reais. |
 | *Quick Sort* | é altamente eficiente em média, mas sua degradação no pior caso evidencia a dependência da estratégia de escolha do pivô. |
 | *Insertion Sort* | é competitivo em vetores pequenos ou quase ordenados, sendo útil em algoritmos híbridos. |
