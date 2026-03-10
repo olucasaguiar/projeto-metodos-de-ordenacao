@@ -23,3 +23,36 @@ O projeto propõe atingir ao objetivo proposto pelo seguinte enunciado:
 >   - gráficos com as comparações de tempos medidos entre todos os métodos.
 >   - análise crítica sobre a eficiência dos algoritmos.
 >   - análise crítica sobre a análise assintótica X os tempos obtidos.
+
+## Estrutura do Projeto
+
+O projeto foi escrito utilizando linguagem Go e organizado em um módulo principal. A organização dos pacotes não segue a estrutura padrão `src` para deixar o projeto com aspecto simples. Assim, os pacotes da aplicação foram distribuídos no diretório `app`, os testes de unidade em `tests` e os resultados da execução em `results`.
+
+O ponto de entrada da aplicação é o arquivo [benchmark.go](./app/benchmark.go), responsável por tratar os argumentos passados para a aplicação e executar o fluxo de testes. Para saber mais sobre os parâmetros da aplicação, rode pacote principal com o `go` e observe a saída no terminal.
+
+```bash
+go run "app/benchmark.go"
+```
+
+Os algoritmos de ordenação se encontram no diretório `./app/sort/`, e cada algoritmo tem seu próprio arquivo com sua implementação documentada nos padrões de documentação da linguagem.
+
+```text
+/app
+|---| sort
+    |---| bubble.go     # Implementação do algoritmo Bubble Sort
+        | insertion.go  # Implementação do algoritmo Insertion Sort
+        | selection.go  # Implementação do algoritmo Selection Sort
+        | merge.go      # Implementação do algoritmo Merge Sort
+        | quick.go      # Implementação do algoritmo Quick Sort
+```
+
+No projeto, foram utilizados algoritmos de apoio para as necessidades: geração de vetores em tempo de execução ([generator.go](./app/utils/generator.go)), embaralhamento de valores em vetor ([fisherYates.go](./app/shuffle/fisherYates.go)), manipulação de arquivos ([file.go](./app/utils/file.go)) e relatório ([report.go](./app/utils/report.go)).
+
+## Análise e Resultados
+
+O artigo está separado nos seguintes documentos:
+
+1. [Resumo](./docs/SUMMARY.md)
+2. [Metodologia](./docs/METODOLOGY.md)
+3. [Resultados](./docs/RESULTS.md)
+4. [Conclusão](./docs/CONCLUSION.md)
